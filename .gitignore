@@ -1,0 +1,12 @@
+*.com
+*.obj
+*.swp
+*.map
+*.lst
+*~
+*.cmt
+*.out
+*.o
+*.a
+*.d
+*.txt
