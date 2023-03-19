@@ -113,7 +113,7 @@ program_end:
 
 ok_msg    db 0Dh, "Access granted", "$"
 err_msg   db 0Dh, "Wrong password", "$"
-buf       db 16d dup (0h)
+buf       db 2Fd dup (0h)
 canary1   dw 0A88Ah
 hash_orig dw 0F9E8h                     ; ded32$
 canary2   dw 0D34Dh
