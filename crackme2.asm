@@ -33,8 +33,10 @@ end_inf_loop:
     mov dx, offset err_msg
     
     mov ax, 0h
-    mov si, offset buf
-    mov cx, 2Fh
+    mov si, offset buf + 1h
+    mov cl, cs:[index_buf]
+    xor ch, ch
+    sub cx, 2h
 
 hash_loop:
     shl ax, 1h
@@ -77,10 +79,12 @@ inp_int09 proc
 
     mov si, offset index_buf
 
-    mov bx, cs:[si]
+    mov bl, cs:[si]
+    xor bh, bh
+    dec al
     mov cs:[offset buf + bx], al
-    inc bx
-    mov cs:[index_buf], bx
+    inc bl
+    mov cs:[index_buf], bl
 
     pop si bx
 
@@ -126,9 +130,9 @@ endp
 
 ok_msg    db 0Dh, "Access granted", "$"
 err_msg   db 0Dh, "Wrong password", "$"
-index_buf dw 0h
-buf       db 2Fh dup (0h)
-hash_orig dw 9370h
+index_buf db 0h
+buf       db 20h dup (0h)
+hash_orig dw 0BA14h
 
 end start
 
